@@ -10,13 +10,13 @@ public class SimManager {
 
     AABB simWindow;
 
-    public SimManager(int nAgents, AABB simWindow) {
+    public SimManager(AABB simWindow) {
 
-        agents = new Agent[nAgents];
+        agents = new Agent[SimConfig.nAgents];
 
         this.simWindow = simWindow;
 
-        for (int i = 0; i < nAgents; i++) {
+        for (int i = 0; i < SimConfig.nAgents; i++) {
             agents[i] = new Agent(simWindow, (int) (Math.random() * simWindow.getW() + simWindow.getX()),
                     (int) (Math.random() * simWindow.getH() + simWindow.getY()),
                     10, 'S');

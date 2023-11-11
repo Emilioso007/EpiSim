@@ -26,7 +26,7 @@ public class Simulation extends Screen {
         this.simWindow = new AABB(20, 20, 200, 200);
 
         this.nAgents = nAgents;
-        simManager = new SimManager(this.nAgents, simWindow);
+        simManager = new SimManager(simWindow);
 
     }
 
