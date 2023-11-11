@@ -1,19 +1,21 @@
 package ScreenClasses;
 
+import ScreenClasses.Screens.Menu;
 import processing.core.PApplet;
 
 public class ScreenManager {
-    
-    PApplet p;
-    Screen currentScreen;
+
+    private PApplet p;
+    private Screen currentScreen;
 
     public ScreenManager(PApplet p) {
         this.p = p;
 
         currentScreen = new Menu(this);
+
     }
 
-    public void run(){
+    public void run() {
         update();
         render();
     }
@@ -24,6 +26,10 @@ public class ScreenManager {
 
     public void render() {
         currentScreen.render();
+    }
+
+    public PApplet getP() {
+        return p;
     }
 
 }

@@ -1,4 +1,4 @@
-package LogicClasses;
+package LogicClasses.Simulation;
 
 import LogicClasses.ShapesClasses.Circle;
 

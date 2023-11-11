@@ -1,5 +1,7 @@
-package ScreenClasses;
+package ScreenClasses.Screens;
 
+import ScreenClasses.Screen;
+import ScreenClasses.ScreenManager;
 import processing.core.*;
 
 public class Menu extends Screen {
@@ -9,7 +11,7 @@ public class Menu extends Screen {
 
     public Menu(ScreenManager sm) {
         this.sm = sm;
-        this.p = sm.p;
+        this.p = sm.getP();
     }
 
     public void update() {
