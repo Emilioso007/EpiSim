@@ -35,6 +35,18 @@ public class Simulation extends Screen {
 
     public void render() {
 
+        for(int i = 0; i < simManager.agents.length; i++) {
+
+            if(simManager.agents[i].getState() == 'S') {
+                p.fill(0, 255, 0);
+            } else if(simManager.agents[i].getState() == 'I') {
+                p.fill(255, 0, 0);
+            }
+
+            p.ellipse(simManager.agents[i].getX(), simManager.agents[i].getY(), simManager.agents[i].getR()/2, simManager.agents[i].getR()/2);
+
+        }
+
     }
 
 }

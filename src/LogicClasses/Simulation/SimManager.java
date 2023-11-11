@@ -4,9 +4,9 @@ import LogicClasses.ShapesClasses.AABB;
 
 public class SimManager {
 
-    private Agent[] agents;
+    public Agent[] agents;
 
-    private AABB simWindow;
+    AABB simWindow;
 
     public SimManager(int nAgents, AABB simWindow) {
 
@@ -15,12 +15,35 @@ public class SimManager {
         this.simWindow = simWindow;
 
         for (int i = 0; i < nAgents; i++) {
-            agents[i] = new Agent((int) (Math.random() * 800), (int) (Math.random() * 600), 10, 'S');
+            agents[i] = new Agent((int) (Math.random() * simWindow.getW()), (int) (Math.random() * simWindow.getH()),
+                    10, 'S');
         }
 
     }
 
     public void run() {
+
+        for (int i = 0; i < agents.length; i++) {
+
+            if (agents[i].getState() == 'I') {
+
+                for (int j = i; j < agents.length; j++) {
+
+                    if (i != j) {
+
+                        if (agents[i].overlaps(agents[j])) {
+
+                            agents[j].setState('I');
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
 
     }
 

@@ -6,7 +6,7 @@ import processing.core.PApplet;
 public class ScreenManager {
 
     private PApplet p;
-    private Screen currentScreen;
+    public Screen currentScreen;
 
     public ScreenManager(PApplet p) {
         this.p = p;
@@ -30,6 +30,10 @@ public class ScreenManager {
 
     public PApplet getP() {
         return p;
+    }
+
+    public void changeScreen(Screen screen) {
+        currentScreen = screen;
     }
 
 }

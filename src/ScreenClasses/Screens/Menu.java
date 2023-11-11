@@ -15,11 +15,16 @@ public class Menu extends Screen {
     }
 
     public void update() {
-
+        if (p.mousePressed) {
+            sm.changeScreen(new Simulation(sm, 100));
+        }
     }
 
     public void render() {
-
+        p.background(0);
+        p.fill(255);
+        p.textSize(32);
+        p.text("Click to start simulation", p.width / 2 - 150, p.height / 2);
     }
 
 }
