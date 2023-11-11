@@ -16,7 +16,7 @@ public class Menu extends Screen {
 
     public void update() {
         if (p.mousePressed) {
-            sm.changeScreen(new Simulation(sm, 100));
+            sm.changeScreen(new Simulation(sm));
         }
     }
 

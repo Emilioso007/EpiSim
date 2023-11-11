@@ -2,7 +2,6 @@ package LogicClasses.Simulation;
 
 import LogicClasses.ShapesClasses.AABB;
 import LogicClasses.ShapesClasses.Circle;
-import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Agent extends Circle {
@@ -32,17 +31,17 @@ public class Agent extends Circle {
         vel.mult(2);
         move(vel);
 
-        if (getX() < 0 + simWindow.getX()) {
-            setX(simWindow.getX() + simWindow.getW());
+        if (getX() < 0) {
+            setX(simWindow.getW());
         }
-        if (getX() > simWindow.getX() + simWindow.getW()) {
-            setX(0 + simWindow.getX());
+        if (getX() > simWindow.getW()) {
+            setX(0);
         }
-        if (getY() < 0 + simWindow.getY()) {
-            setY(simWindow.getY() + simWindow.getH());
+        if (getY() < 0) {
+            setY(simWindow.getH());
         }
-        if (getY() > simWindow.getY() + simWindow.getH()) {
-            setY(0 + simWindow.getY());
+        if (getY() > simWindow.getH()) {
+            setY(0);
         }
 
     }

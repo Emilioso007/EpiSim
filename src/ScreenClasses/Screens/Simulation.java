@@ -6,6 +6,7 @@ import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PGraphics;
 
 public class Simulation extends Screen {
 
@@ -14,19 +15,20 @@ public class Simulation extends Screen {
 
     SimManager simManager;
 
-    private int nAgents;
-
     private AABB simWindow;
 
-    public Simulation(ScreenManager sm, int nAgents) {
+    PGraphics pg;
+
+    public Simulation(ScreenManager sm) {
 
         this.sm = sm;
         this.p = sm.getP();
 
         this.simWindow = new AABB(20, 20, 200, 200);
 
-        this.nAgents = nAgents;
         simManager = new SimManager(simWindow);
+
+        pg = p.createGraphics((int) simWindow.getW(), (int) simWindow.getH(), PConstants.P2D);
 
     }
 
@@ -36,26 +38,34 @@ public class Simulation extends Screen {
 
     public void render() {
 
-        p.rectMode(PConstants.CORNER);
-        p.noFill();
-        p.stroke(255);
-        p.strokeWeight(2);
-        p.rect(simWindow.getX(), simWindow.getY(), simWindow.getW(), simWindow.getH());
+        pg.beginDraw();
 
-        p.noStroke();
-        p.ellipseMode(PConstants.RADIUS);
+        pg.background(42);
+
+        pg.noStroke();
+        pg.ellipseMode(PConstants.RADIUS);
         for (int i = 0; i < simManager.agents.length; i++) {
 
             if (simManager.agents[i].getState() == 'S') {
-                p.fill(0, 255, 0);
+                pg.fill(0, 255, 0);
             } else if (simManager.agents[i].getState() == 'I') {
-                p.fill(255, 0, 0);
+                pg.fill(255, 0, 0);
             }
 
-            p.ellipse(simManager.agents[i].getX(), simManager.agents[i].getY(), simManager.agents[i].getR(),
+            pg.ellipse(simManager.agents[i].getX(), simManager.agents[i].getY(), simManager.agents[i].getR(),
                     simManager.agents[i].getR());
 
         }
+
+        pg.rectMode(PConstants.CORNER);
+        pg.noFill();
+        pg.stroke(255);
+        pg.strokeWeight(2);
+        pg.rect(0, 0, simWindow.getW(), simWindow.getH());
+
+        pg.endDraw();
+
+        p.image(pg, simWindow.getX(), simWindow.getY());
 
     }
 

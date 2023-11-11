@@ -1,9 +1,10 @@
 package LogicClasses.Simulation;
-public class SimConfig {
-    
-    public static int nAgents;
 
-    public SimConfig(){
+public class SimConfig {
+
+    public static int nAgents = 10;
+
+    public SimConfig() {
 
     }
 

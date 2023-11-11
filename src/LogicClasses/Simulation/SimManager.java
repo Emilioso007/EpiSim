@@ -19,7 +19,7 @@ public class SimManager {
         for (int i = 0; i < SimConfig.nAgents; i++) {
             agents[i] = new Agent(simWindow, (int) (Math.random() * simWindow.getW() + simWindow.getX()),
                     (int) (Math.random() * simWindow.getH() + simWindow.getY()),
-                    10, 'S');
+                    5, 'S');
         }
 
         agents[0].setState('I');

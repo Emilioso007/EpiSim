@@ -1,5 +1,4 @@
 import processing.core.*;
-import LogicClasses.*;
 import ScreenClasses.*;
 
 public class App extends PApplet {
