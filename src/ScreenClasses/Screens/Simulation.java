@@ -1,7 +1,11 @@
 package ScreenClasses.Screens;
 
-import LogicClasses.ShapesClasses.AABB;
+import java.util.ArrayList;
+
 import LogicClasses.Simulation.SimManager;
+import LogicClasses.Simulation.Graph.GraphLine;
+import LogicClasses.Simulation.Graph.GraphManager;
+import LogicClasses.UtilitiesClasses.AABB;
 import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
 import processing.core.PApplet;
@@ -10,14 +14,16 @@ import processing.core.PGraphics;
 
 public class Simulation extends Screen {
 
-    PApplet p;
-    ScreenManager sm;
+    private PApplet p;
+    private ScreenManager sm;
 
-    SimManager simManager;
+    private SimManager simManager;
 
-    private AABB simWindow;
+    private GraphManager graphManager;
 
-    PGraphics pg;
+    private AABB simWindow, graphWindow;
+
+    private PGraphics simGraphics, graphGraphics;
 
     public Simulation(ScreenManager sm) {
 
@@ -25,60 +31,125 @@ public class Simulation extends Screen {
         this.p = sm.getP();
 
         this.simWindow = new AABB(20, 20, 300, 200);
+        this.graphWindow = new AABB(20, 240, 300, 200);
 
-        simManager = new SimManager(simWindow);
+        graphManager = new GraphManager(graphWindow);
+        simManager = new SimManager(simWindow, graphManager);
 
-        pg = p.createGraphics((int) simWindow.getW(), (int) simWindow.getH(), PConstants.P2D);
+        simGraphics = p.createGraphics((int) simWindow.getW(), (int) simWindow.getH(), PConstants.P2D);
+        graphGraphics = p.createGraphics((int) graphWindow.getW(), (int) graphWindow.getH(), PConstants.P2D);
 
     }
 
     public void update() {
         simManager.run();
+        graphManager.run();
 
-        if(p.mousePressed && this.simWindow.contains(p.mouseX, p.mouseY)){
+        if (p.mousePressed && this.simWindow.contains(p.mouseX, p.mouseY)) {
             this.simWindow.setX(this.simWindow.getX() + p.mouseX - p.pmouseX);
             this.simWindow.setY(this.simWindow.getY() + p.mouseY - p.pmouseY);
+        }
+
+        if (p.mousePressed && this.graphWindow.contains(p.mouseX, p.mouseY)) {
+            this.graphWindow.setX(this.graphWindow.getX() + p.mouseX - p.pmouseX);
+            this.graphWindow.setY(this.graphWindow.getY() + p.mouseY - p.pmouseY);
         }
     }
 
     public void render() {
 
-        pg.beginDraw();
+        renderSimGraphics();
 
-        pg.background(42);
+        if (simManager.agentsInfected() > 0) {
+            renderGraphGraphics();
+        } else {
+            graphGraphics.beginDraw();
+            graphGraphics.fill(20, 50);
+            graphGraphics.textAlign(PConstants.CENTER, PConstants.CENTER);
+            graphGraphics.textSize(32);
+            graphGraphics.text("done", graphWindow.getW() / 2, graphWindow.getH() / 2);
+            graphGraphics.endDraw();
+        }
 
-        pg.noStroke();
-        pg.ellipseMode(PConstants.RADIUS);
-        for (int i = 0; i < simManager.agents.length; i++) {
+        p.image(simGraphics, simWindow.getX(), simWindow.getY());
+        p.image(graphGraphics, graphWindow.getX(), graphWindow.getY());
 
-            switch (simManager.agents[i].getState()) {
+    }
+
+    public void renderSimGraphics() {
+        simGraphics.beginDraw();
+
+        simGraphics.background(42);
+
+        simGraphics.noStroke();
+        simGraphics.ellipseMode(PConstants.RADIUS);
+        for (int i = 0; i < simManager.totalAgents(); i++) {
+
+            switch (simManager.getAgent(i).getState()) {
                 case 'S':
-                    pg.fill(0, 255, 0);
+                    simGraphics.fill(0, 255, 0);
                     break;
                 case 'I':
-                    pg.fill(255, 0, 0);
+                    simGraphics.fill(255, 0, 0);
                     break;
                 case 'R':
-                    pg.fill(0, 0, 255);
+                    simGraphics.fill(0, 0, 255);
                     break;
                 default:
                     break;
             }
 
-            pg.ellipse(simManager.agents[i].getX(), simManager.agents[i].getY(), simManager.agents[i].getR(),
-                    simManager.agents[i].getR());
+            simGraphics.ellipse(simManager.getAgent(i).getX(), simManager.getAgent(i).getY(),
+                    simManager.getAgent(i).getR(),
+                    simManager.getAgent(i).getR());
 
         }
 
-        pg.rectMode(PConstants.CORNER);
-        pg.noFill();
-        pg.stroke(255);
-        pg.strokeWeight(2);
-        pg.rect(0, 0, simWindow.getW(), simWindow.getH());
+        simGraphics.rectMode(PConstants.CORNER);
+        simGraphics.noFill();
+        simGraphics.stroke(255);
+        simGraphics.strokeWeight(2);
+        simGraphics.rect(0, 0, simWindow.getW(), simWindow.getH());
 
-        pg.endDraw();
+        simGraphics.endDraw();
 
-        p.image(pg, simWindow.getX(), simWindow.getY());
+    }
+
+    public void renderGraphGraphics() {
+
+        graphGraphics.beginDraw();
+
+        graphGraphics.background(42);
+
+        for (int i = 0; i < graphManager.getLines().size(); i++) {
+
+            GraphLine line = graphManager.getLines().get(i);
+
+            graphGraphics.stroke(line.getColor().getR(), line.getColor().getG(), line.getColor().getB());
+            graphGraphics.strokeWeight(2);
+
+            graphGraphics.beginShape();
+
+            for (int j = 0; j < line.getLength(); j++) {
+
+                float x = PApplet.map(j, 0, line.getLength()-1, 0, graphWindow.getW());
+                float y = PApplet.map(line.getDataAtIndex(j), 0, simManager.totalAgents(), graphWindow.getH(), 0);
+
+                graphGraphics.vertex(x, y);
+
+            }
+
+            graphGraphics.endShape();
+
+        }
+
+        graphGraphics.rectMode(PConstants.CORNER);
+        graphGraphics.noFill();
+        graphGraphics.stroke(255);
+        graphGraphics.strokeWeight(2);
+        graphGraphics.rect(0, 0, simWindow.getW(), simWindow.getH());
+
+        graphGraphics.endDraw();
 
     }
 

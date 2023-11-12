@@ -1,7 +1,7 @@
 package LogicClasses.Simulation;
 
-import LogicClasses.ShapesClasses.AABB;
-import LogicClasses.ShapesClasses.Circle;
+import LogicClasses.UtilitiesClasses.AABB;
+import LogicClasses.UtilitiesClasses.Circle;
 import processing.core.PVector;
 
 public class Agent extends Circle {

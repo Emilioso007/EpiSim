@@ -1,4 +1,4 @@
-package LogicClasses.ShapesClasses;
+package LogicClasses.UtilitiesClasses;
 
 import processing.core.PVector;
 

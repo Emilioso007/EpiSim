@@ -1,25 +1,30 @@
 package LogicClasses.Simulation;
 
-import LogicClasses.ShapesClasses.AABB;
+import LogicClasses.Simulation.Graph.GraphManager;
+import LogicClasses.UtilitiesClasses.AABB;
 
 public class SimManager {
 
     private int frameCount = 0;
 
-    public Agent[] agents;
+    private Agent[] agents;
 
     private AABB simWindow;
 
-    public SimManager(AABB simWindow) {
+    private GraphManager graphManager;
+
+    public SimManager(AABB simWindow, GraphManager graphManager) {
 
         agents = new Agent[SimConfig.nAgents];
 
         this.simWindow = simWindow;
 
+        this.graphManager = graphManager;
+
         for (int i = 0; i < SimConfig.nAgents; i++) {
             agents[i] = new Agent(this.simWindow, (int) (Math.random() * this.simWindow.getW() + this.simWindow.getX()),
                     (int) (Math.random() * this.simWindow.getH() + this.simWindow.getY()),
-                    5, 'S');
+                    1, 'S');
         }
 
         agents[0].setState('I');
@@ -35,6 +40,10 @@ public class SimManager {
         spreadDisease();
 
         checkForRecovery();
+
+        if (frameCount % 10 == 0) {
+            sendDataToGraphManager();
+        }
 
         frameCount++;
 
@@ -67,6 +76,58 @@ public class SimManager {
             }
         }
 
+    }
+
+    private void sendDataToGraphManager() {
+
+        int nS = agentsSusceptible();
+        int nI = agentsInfected();
+        int nR = agentsRecovered();
+
+        graphManager.sendData(nS, 0);
+        graphManager.sendData(nI, 1);
+        graphManager.sendData(nR, 2);
+
+    }
+
+    public int agentsSusceptible() {
+
+        int n = 0;
+        for (int i = 0; i < agents.length; i++) {
+            if (agents[i].getState() == 'S') {
+                n++;
+            }
+        }
+        return n;
+
+    }
+
+    public int agentsInfected() {
+        int n = 0;
+        for (int i = 0; i < agents.length; i++) {
+            if (agents[i].getState() == 'I') {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    public int agentsRecovered() {
+        int n = 0;
+        for (int i = 0; i < agents.length; i++) {
+            if (agents[i].getState() == 'R') {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    public int totalAgents() {
+        return agents.length;
+    }
+
+    public Agent getAgent(int i) {
+        return agents[i];
     }
 
 }

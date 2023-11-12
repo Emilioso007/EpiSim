@@ -1,4 +1,4 @@
-package LogicClasses.ShapesClasses;
+package LogicClasses.UtilitiesClasses;
 
 public class AABB {
 
