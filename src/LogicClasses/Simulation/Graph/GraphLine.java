@@ -1,8 +1,6 @@
 package LogicClasses.Simulation.Graph;
 
 import java.util.ArrayList;
-
-import LogicClasses.UtilitiesClasses.Circle;
 import LogicClasses.UtilitiesClasses.Color;
 
 public class GraphLine {

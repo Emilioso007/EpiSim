@@ -1,6 +1,5 @@
 package LogicClasses.Simulation.Graph;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 import LogicClasses.UtilitiesClasses.*;
@@ -15,9 +14,9 @@ public class GraphManager {
 
         this.graphWindow = graphWindow;
 
-        lines.add(new GraphLine(new Color(0,255,0)));
-        lines.add(new GraphLine(new Color(255,0,0)));
-        lines.add(new GraphLine(new Color(0,0,255)));
+        lines.add(new GraphLine(new Color(0, 255, 0)));
+        lines.add(new GraphLine(new Color(255, 0, 0)));
+        lines.add(new GraphLine(new Color(0, 0, 255)));
 
     }
 

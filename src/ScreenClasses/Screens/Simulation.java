@@ -1,7 +1,5 @@
 package ScreenClasses.Screens;
 
-import java.util.ArrayList;
-
 import LogicClasses.Simulation.SimManager;
 import LogicClasses.Simulation.Graph.GraphLine;
 import LogicClasses.Simulation.Graph.GraphManager;
@@ -28,7 +26,7 @@ public class Simulation extends Screen {
     public Simulation(ScreenManager sm) {
 
         this.sm = sm;
-        this.p = sm.getP();
+        this.p = this.sm.getP();
 
         this.simWindow = new AABB(640, 60, 600, 600);
         this.graphWindow = new AABB(60, 60, 520, 300);
