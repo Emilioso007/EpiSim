@@ -10,7 +10,7 @@ public class App extends PApplet {
     }
 
     public void settings() {
-        size(600, 400, P2D);
+        size(1280, 720, P2D);
 
         screenManager = new ScreenManager(this);
     }

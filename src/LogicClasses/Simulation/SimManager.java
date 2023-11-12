@@ -2,6 +2,7 @@ package LogicClasses.Simulation;
 
 import LogicClasses.Simulation.Graph.GraphManager;
 import LogicClasses.UtilitiesClasses.AABB;
+import LogicClasses.UtilitiesClasses.Random;
 
 public class SimManager {
 
@@ -22,9 +23,10 @@ public class SimManager {
         this.graphManager = graphManager;
 
         for (int i = 0; i < SimConfig.nAgents; i++) {
-            agents[i] = new Agent(this.simWindow, (int) (Math.random() * this.simWindow.getW() + this.simWindow.getX()),
-                    (int) (Math.random() * this.simWindow.getH() + this.simWindow.getY()),
-                    1, 'S');
+            agents[i] = new Agent(this.simWindow,
+                    Random.Int(this.simWindow.getW()),
+                    Random.Int(this.simWindow.getH()),
+                    5, 'S');
         }
 
         agents[0].setState('I');

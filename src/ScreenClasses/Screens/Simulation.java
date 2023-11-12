@@ -30,8 +30,8 @@ public class Simulation extends Screen {
         this.sm = sm;
         this.p = sm.getP();
 
-        this.simWindow = new AABB(20, 20, 300, 200);
-        this.graphWindow = new AABB(20, 240, 300, 200);
+        this.simWindow = new AABB(640, 60, 600, 600);
+        this.graphWindow = new AABB(60, 60, 520, 300);
 
         graphManager = new GraphManager(graphWindow);
         simManager = new SimManager(simWindow, graphManager);
@@ -126,14 +126,14 @@ public class Simulation extends Screen {
             GraphLine line = graphManager.getLines().get(i);
 
             graphGraphics.stroke(line.getColor().getR(), line.getColor().getG(), line.getColor().getB());
-            graphGraphics.strokeWeight(2);
+            graphGraphics.strokeWeight(5);
 
             graphGraphics.beginShape();
 
             for (int j = 0; j < line.getLength(); j++) {
 
-                float x = PApplet.map(j, 0, line.getLength()-1, 0, graphWindow.getW());
-                float y = PApplet.map(line.getDataAtIndex(j), 0, simManager.totalAgents(), graphWindow.getH(), 0);
+                float x = PApplet.map(j, 0, line.getLength() - 1, 0, graphWindow.getW());
+                float y = PApplet.map(line.getDataAtIndex(j), 0, simManager.totalAgents(), graphWindow.getH() - 5, 5);
 
                 graphGraphics.vertex(x, y);
 
@@ -147,7 +147,7 @@ public class Simulation extends Screen {
         graphGraphics.noFill();
         graphGraphics.stroke(255);
         graphGraphics.strokeWeight(2);
-        graphGraphics.rect(0, 0, simWindow.getW(), simWindow.getH());
+        graphGraphics.rect(0, 0, graphWindow.getW(), graphWindow.getH());
 
         graphGraphics.endDraw();
 
