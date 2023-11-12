@@ -26,6 +26,11 @@ public class ScreenManager {
 
     public void render() {
         currentScreen.render();
+
+        p.fill(255);
+        p.textSize(16);
+        p.textAlign(PApplet.RIGHT, PApplet.TOP);
+        p.text("FPS: " + (int) p.frameRate, p.width, 0);
     }
 
     public PApplet getP() {

@@ -17,7 +17,7 @@ public class App extends PApplet {
 
     public void draw() {
         background(42);
-
+        
         screenManager.run();
     }
 

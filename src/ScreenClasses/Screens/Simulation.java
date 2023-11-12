@@ -24,7 +24,7 @@ public class Simulation extends Screen {
         this.sm = sm;
         this.p = sm.getP();
 
-        this.simWindow = new AABB(20, 20, 200, 200);
+        this.simWindow = new AABB(20, 20, 300, 200);
 
         simManager = new SimManager(simWindow);
 
@@ -34,6 +34,11 @@ public class Simulation extends Screen {
 
     public void update() {
         simManager.run();
+
+        if(p.mousePressed && this.simWindow.contains(p.mouseX, p.mouseY)){
+            this.simWindow.setX(this.simWindow.getX() + p.mouseX - p.pmouseX);
+            this.simWindow.setY(this.simWindow.getY() + p.mouseY - p.pmouseY);
+        }
     }
 
     public void render() {

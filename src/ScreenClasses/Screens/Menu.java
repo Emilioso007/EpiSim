@@ -23,8 +23,9 @@ public class Menu extends Screen {
     public void render() {
         p.background(0);
         p.fill(255);
+        p.textAlign(PConstants.CENTER, PConstants.CENTER);
         p.textSize(32);
-        p.text("Click to start simulation", p.width / 2 - 150, p.height / 2);
+        p.text("Click to start simulation", p.width / 2, p.height / 2);
     }
 
 }
