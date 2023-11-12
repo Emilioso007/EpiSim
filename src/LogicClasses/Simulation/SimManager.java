@@ -8,7 +8,7 @@ public class SimManager {
 
     public Agent[] agents;
 
-    AABB simWindow;
+    private AABB simWindow;
 
     public SimManager(AABB simWindow) {
 
@@ -17,8 +17,8 @@ public class SimManager {
         this.simWindow = simWindow;
 
         for (int i = 0; i < SimConfig.nAgents; i++) {
-            agents[i] = new Agent(simWindow, (int) (Math.random() * simWindow.getW() + simWindow.getX()),
-                    (int) (Math.random() * simWindow.getH() + simWindow.getY()),
+            agents[i] = new Agent(this.simWindow, (int) (Math.random() * this.simWindow.getW() + this.simWindow.getX()),
+                    (int) (Math.random() * this.simWindow.getH() + this.simWindow.getY()),
                     5, 'S');
         }
 
