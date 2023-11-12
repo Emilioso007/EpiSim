@@ -34,6 +34,8 @@ public class SimManager {
 
         spreadDisease();
 
+        checkForRecovery();
+
         frameCount++;
 
     }
@@ -43,12 +45,24 @@ public class SimManager {
         for (int i = 0; i < agents.length; i++) {
             if (agents[i].getState() == 'I') {
                 for (int j = 0; j < agents.length; j++) {
-                    if (i != j) {
+                    if (i != j && agents[j].getState() == 'S') {
                         if (agents[i].overlaps(agents[j])) {
                             agents[j].setState('I');
                             agents[j].setInfected(frameCount);
                         }
                     }
+                }
+            }
+        }
+
+    }
+
+    private void checkForRecovery() {
+
+        for (int i = 0; i < agents.length; i++) {
+            if (agents[i].getState() == 'I') {
+                if (frameCount - agents[i].getFrameInfected() > 300) {
+                    agents[i].setState('R');
                 }
             }
         }

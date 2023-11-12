@@ -51,10 +51,18 @@ public class Simulation extends Screen {
         pg.ellipseMode(PConstants.RADIUS);
         for (int i = 0; i < simManager.agents.length; i++) {
 
-            if (simManager.agents[i].getState() == 'S') {
-                pg.fill(0, 255, 0);
-            } else if (simManager.agents[i].getState() == 'I') {
-                pg.fill(255, 0, 0);
+            switch (simManager.agents[i].getState()) {
+                case 'S':
+                    pg.fill(0, 255, 0);
+                    break;
+                case 'I':
+                    pg.fill(255, 0, 0);
+                    break;
+                case 'R':
+                    pg.fill(0, 0, 255);
+                    break;
+                default:
+                    break;
             }
 
             pg.ellipse(simManager.agents[i].getX(), simManager.agents[i].getY(), simManager.agents[i].getR(),

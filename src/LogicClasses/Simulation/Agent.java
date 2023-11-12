@@ -58,4 +58,8 @@ public class Agent extends Circle {
         return state;
     }
 
+    public int getFrameInfected() {
+        return frameInfected;
+    }
+
 }
