@@ -40,18 +40,18 @@ public class Simulation extends Screen {
     }
 
     public void update() {
+
         simManager.run();
         graphManager.run();
-
-        if (p.mousePressed && this.simWindow.contains(p.mouseX, p.mouseY)) {
+        
+        if (p.mousePressed && this.graphWindow.contains(p.mouseX, p.mouseY)) {
+            this.graphWindow.setX(this.graphWindow.getX() + p.mouseX - p.pmouseX);
+            this.graphWindow.setY(this.graphWindow.getY() + p.mouseY - p.pmouseY);
+        } else if (p.mousePressed && this.simWindow.contains(p.mouseX, p.mouseY)) {
             this.simWindow.setX(this.simWindow.getX() + p.mouseX - p.pmouseX);
             this.simWindow.setY(this.simWindow.getY() + p.mouseY - p.pmouseY);
         }
 
-        if (p.mousePressed && this.graphWindow.contains(p.mouseX, p.mouseY)) {
-            this.graphWindow.setX(this.graphWindow.getX() + p.mouseX - p.pmouseX);
-            this.graphWindow.setY(this.graphWindow.getY() + p.mouseY - p.pmouseY);
-        }
     }
 
     public void render() {
@@ -128,15 +128,20 @@ public class Simulation extends Screen {
 
             graphGraphics.beginShape();
 
-            for (int j = 0; j < line.getLength(); j++) {
+            if (line.getLength() == 1) {
+                graphGraphics.vertex(0,
+                        PApplet.map(line.getDataAtIndex(0), 0, simManager.totalAgents(), graphWindow.getH() - 5, 5));
+            } else {
+                for (int j = 0; j < line.getLength(); j++) {
 
-                float x = PApplet.map(j, 0, line.getLength() - 1, 0, graphWindow.getW());
-                float y = PApplet.map(line.getDataAtIndex(j), 0, simManager.totalAgents(), graphWindow.getH() - 5, 5);
+                    float x = PApplet.map(j, 0, line.getLength() - 1, 0, graphWindow.getW());
+                    float y = PApplet.map(line.getDataAtIndex(j), 0, simManager.totalAgents(), graphWindow.getH() - 5,
+                            5);
 
-                graphGraphics.vertex(x, y);
+                    graphGraphics.vertex(x, y);
 
+                }
             }
-
             graphGraphics.endShape();
 
         }
