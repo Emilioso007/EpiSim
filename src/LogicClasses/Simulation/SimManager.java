@@ -2,7 +2,6 @@ package LogicClasses.Simulation;
 
 import LogicClasses.Simulation.Graph.GraphManager;
 import LogicClasses.UtilitiesClasses.AABB;
-import LogicClasses.UtilitiesClasses.Random;
 
 public class SimManager {
 
@@ -14,6 +13,8 @@ public class SimManager {
 
     private GraphManager graphManager;
 
+    private AgentMaker agentMaker;
+
     public SimManager(AABB simWindow, GraphManager graphManager) {
 
         agents = new Agent[SimConfig.nAgents];
@@ -22,11 +23,10 @@ public class SimManager {
 
         this.graphManager = graphManager;
 
+        agentMaker = new AgentMaker(simWindow);
+
         for (int i = 0; i < SimConfig.nAgents; i++) {
-            agents[i] = new Agent(this.simWindow,
-                    Random.Int(this.simWindow.getW()),
-                    Random.Int(this.simWindow.getH()),
-                    5, 'S');
+            agents[i] = agentMaker.makeAgent();
         }
 
         agents[0].setState('I');
