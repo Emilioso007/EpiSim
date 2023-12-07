@@ -2,7 +2,6 @@ package ScreenClasses;
 
 import LogicClasses.UtilitiesClasses.MouseHandler;
 import ScreenClasses.Screens.Menu;
-import ScreenClasses.Screens.Settings;
 import processing.core.PApplet;
 
 public class ScreenManager {

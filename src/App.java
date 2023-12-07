@@ -1,7 +1,5 @@
 import processing.core.*;
 
-import javax.swing.JFrame;
-
 import ScreenClasses.*;
 
 public class App extends PApplet {

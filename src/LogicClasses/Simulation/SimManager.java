@@ -23,7 +23,7 @@ public class SimManager {
 
         this.graphManager = graphManager;
 
-        agentMaker = new AgentMaker(simWindow);
+        agentMaker = new AgentMaker(this.simWindow);
 
         for (int i = 0; i < SimConfig.getNAgents(); i++) {
             agents[i] = agentMaker.makeAgent();
