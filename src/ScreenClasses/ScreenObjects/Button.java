@@ -3,6 +3,7 @@ package ScreenClasses.ScreenObjects;
 import LogicClasses.UtilitiesClasses.AABB;
 import LogicClasses.UtilitiesClasses.MouseHandler;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class Button extends AABB {
 
@@ -29,16 +30,16 @@ public class Button extends AABB {
     }
 
     public void render(PApplet p) {
-        if (pressed) {
-            p.fill(0,255,0);
+        if (pressedA) {
+            p.fill(0, 127, 70);
         } else {
-            p.fill(255,0,0);
+            p.fill(0, 147, 81);
         }
         p.rect(getX(), getY(), getW(), getH());
 
         p.fill(255);
-        p.textSize(16);
-        p.textAlign(PApplet.CENTER, PApplet.CENTER);
+        p.textSize(24);
+        p.textAlign(PConstants.CENTER, PConstants.CENTER);
         p.text(key, getX() + getW() / 2, getY() + getH() / 2);
 
     }

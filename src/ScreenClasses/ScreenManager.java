@@ -13,7 +13,7 @@ public class ScreenManager {
     public ScreenManager(PApplet p) {
         this.p = p;
 
-        currentScreen = new Settings(this);
+        currentScreen = new Menu(this);
         
         MouseHandler.init(p);
     }

@@ -1,4 +1,7 @@
 import processing.core.*;
+
+import javax.swing.JFrame;
+
 import ScreenClasses.*;
 
 public class App extends PApplet {
@@ -11,7 +14,10 @@ public class App extends PApplet {
 
     public void settings() {
         size(1280, 720, P2D);
+    }
 
+    public void setup() {
+        surface.setTitle("EpiSim");
         screenManager = new ScreenManager(this);
     }
 

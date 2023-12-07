@@ -1,11 +1,14 @@
 package ScreenClasses.Screens;
 
+import java.util.ArrayList;
+
 import LogicClasses.Simulation.SimManager;
 import LogicClasses.Simulation.Graph.GraphLine;
 import LogicClasses.Simulation.Graph.GraphManager;
 import LogicClasses.UtilitiesClasses.AABB;
 import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
+import ScreenClasses.ScreenObjects.Button;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
@@ -23,6 +26,8 @@ public class Simulation extends Screen {
 
     private PGraphics simGraphics, graphGraphics;
 
+    ArrayList<Button> buttons;
+
     public Simulation(ScreenManager sm) {
 
         this.sm = sm;
@@ -37,6 +42,11 @@ public class Simulation extends Screen {
         simGraphics = p.createGraphics((int) simWindow.getW(), (int) simWindow.getH(), PConstants.P2D);
         graphGraphics = p.createGraphics((int) graphWindow.getW(), (int) graphWindow.getH(), PConstants.P2D);
 
+        buttons = new ArrayList<Button>();
+
+        buttons.add(new Button(100, p.height / 2 + 250, 200, 100, "Menu"));
+        buttons.add(new Button(100, p.height / 2 + 150, 200, 100, "Reset"));
+
     }
 
     public void update() {
@@ -50,6 +60,18 @@ public class Simulation extends Screen {
         } else if (p.mousePressed && this.simWindow.contains(p.mouseX, p.mouseY)) {
             this.simWindow.setX(this.simWindow.getX() + p.mouseX - p.pmouseX);
             this.simWindow.setY(this.simWindow.getY() + p.mouseY - p.pmouseY);
+        }
+
+        for (Button b : buttons) {
+            b.update();
+        }
+
+        if (buttons.get(0).isPressed()) {
+            sm.changeScreen(new Menu(sm));
+        }
+
+        if (buttons.get(1).isPressed()) {
+            sm.changeScreen(new Simulation(sm));
         }
 
     }
@@ -69,8 +91,13 @@ public class Simulation extends Screen {
             graphGraphics.endDraw();
         }
 
+        p.imageMode(PConstants.CORNER);
         p.image(simGraphics, simWindow.getX(), simWindow.getY());
         p.image(graphGraphics, graphWindow.getX(), graphWindow.getY());
+
+        for (Button b : buttons) {
+            b.render(p);
+        }
 
     }
 

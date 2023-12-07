@@ -17,7 +17,7 @@ public class SimManager {
 
     public SimManager(AABB simWindow, GraphManager graphManager) {
 
-        agents = new Agent[SimConfig.nAgents];
+        agents = new Agent[SimConfig.getNAgents()];
 
         this.simWindow = simWindow;
 
@@ -25,7 +25,7 @@ public class SimManager {
 
         agentMaker = new AgentMaker(simWindow);
 
-        for (int i = 0; i < SimConfig.nAgents; i++) {
+        for (int i = 0; i < SimConfig.getNAgents(); i++) {
             agents[i] = agentMaker.makeAgent();
         }
 
@@ -39,7 +39,7 @@ public class SimManager {
             agents[i].randomWalk();
         }
 
-        if (frameCount % SimConfig.framesPerDay == 0) {
+        if (frameCount % SimConfig.getFramesPerDay() == 0) {
             spreadDisease();
         }
 
