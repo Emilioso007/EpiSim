@@ -39,7 +39,9 @@ public class SimManager {
             agents[i].randomWalk();
         }
 
-        spreadDisease();
+        if (frameCount % SimConfig.framesPerDay == 0) {
+            spreadDisease();
+        }
 
         checkForRecovery();
 

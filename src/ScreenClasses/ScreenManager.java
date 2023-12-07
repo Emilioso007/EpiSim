@@ -1,21 +1,25 @@
 package ScreenClasses;
 
+import LogicClasses.UtilitiesClasses.MouseHandler;
 import ScreenClasses.Screens.Menu;
+import ScreenClasses.Screens.Settings;
 import processing.core.PApplet;
 
 public class ScreenManager {
 
     private PApplet p;
-    public Screen currentScreen;
+    private Screen currentScreen;
 
     public ScreenManager(PApplet p) {
         this.p = p;
 
-        currentScreen = new Menu(this);
-
+        currentScreen = new Settings(this);
+        
+        MouseHandler.init(p);
     }
 
     public void run() {
+        MouseHandler.update();
         update();
         render();
     }

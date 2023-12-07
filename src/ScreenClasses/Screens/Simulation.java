@@ -117,7 +117,7 @@ public class Simulation extends Screen {
 
         graphGraphics.beginDraw();
 
-        graphGraphics.background(42);
+        graphGraphics.background(42,128);
 
         for (int i = 0; i < graphManager.getLines().size(); i++) {
 

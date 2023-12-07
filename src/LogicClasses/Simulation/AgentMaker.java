@@ -18,7 +18,7 @@ public class AgentMaker {
         return new Agent(this.simWindow,
                 Random.Int(this.simWindow.getW()),
                 Random.Int(this.simWindow.getH()),
-                5, 'S');
+                SimConfig.agentRadius, 'S');
 
     }
 
