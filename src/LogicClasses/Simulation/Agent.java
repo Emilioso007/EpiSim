@@ -26,7 +26,7 @@ public class Agent extends Circle {
     }
 
     public void randomWalk() {
-        angle += (Math.random() * 2 - 1) * 0.1;
+        angle += (Math.random() * 2 - 1) * 0.5;
         vel = PVector.fromAngle(angle);
         vel.mult(SimConfig.getAgentSpeed());
         move(vel);

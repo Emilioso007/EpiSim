@@ -81,8 +81,8 @@ public class Settings extends Screen {
                 break;
             case 8: // subtract increment from agentRadius
                 SimConfig.setProperty("agentRadius", String.valueOf(SimConfig.getAgentRadius() - increment));
-                if (SimConfig.getAgentRadius() < 0) {
-                    SimConfig.setProperty("agentRadius", "0");
+                if (SimConfig.getAgentRadius() < 1) {
+                    SimConfig.setProperty("agentRadius", "1");
                 }
                 break;
             default:
@@ -92,6 +92,9 @@ public class Settings extends Screen {
     }
 
     public void render() {
+
+        p.background(42);
+
         for (Button b : buttons) {
             b.render(this.screenManager.getP());
         }

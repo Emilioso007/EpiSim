@@ -17,10 +17,11 @@ public class App extends PApplet {
     public void setup() {
         surface.setTitle("EpiSim");
         screenManager = new ScreenManager(this);
+        background(42);
     }
 
     public void draw() {
-        background(42);
+        background(42); 
         screenManager.run();
     }
 

@@ -11,9 +11,11 @@ public class SimManager {
 
     private AABB simWindow;
 
-    private GraphManager graphManager;
+    public GraphManager graphManager;
 
     private AgentMaker agentMaker;
+
+    private boolean paused = false;
 
     public SimManager(AABB simWindow, GraphManager graphManager) {
 
@@ -35,6 +37,9 @@ public class SimManager {
 
     public void run() {
 
+        if (paused) {
+            return;
+        }
         for (int i = 0; i < agents.length; i++) {
             agents[i].randomWalk();
         }
@@ -45,7 +50,7 @@ public class SimManager {
 
         checkForRecovery();
 
-        if (frameCount % 10 == 0) {
+        if (frameCount % 5 == 0) {
             sendDataToGraphManager();
         }
 
@@ -132,6 +137,14 @@ public class SimManager {
 
     public Agent getAgent(int i) {
         return agents[i];
+    }
+
+    public void togglePause() {
+        paused = !paused;
+    }
+
+    public boolean isPaused() {
+        return paused;
     }
 
 }

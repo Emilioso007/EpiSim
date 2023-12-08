@@ -44,8 +44,9 @@ public class Simulation extends Screen {
 
         buttons = new ArrayList<Button>();
 
-        buttons.add(new Button(100, p.height / 2 + 250, 200, 100, "Menu"));
-        buttons.add(new Button(100, p.height / 2 + 150, 200, 100, "Reset"));
+        buttons.add(new Button(50, p.height / 2 + 250, 200, 100, "Menu"));
+        buttons.add(new Button(50, p.height / 2 + 150, 200, 100, "Reset"));
+        buttons.add(new Button(50, p.height / 2 + 50, 200, 100, "Pause"));
 
     }
 
@@ -53,7 +54,7 @@ public class Simulation extends Screen {
 
         simManager.run();
         graphManager.run();
-        
+
         if (p.mousePressed && this.graphWindow.contains(p.mouseX, p.mouseY)) {
             this.graphWindow.setX(this.graphWindow.getX() + p.mouseX - p.pmouseX);
             this.graphWindow.setY(this.graphWindow.getY() + p.mouseY - p.pmouseY);
@@ -71,12 +72,19 @@ public class Simulation extends Screen {
         }
 
         if (buttons.get(1).isPressed()) {
-            sm.changeScreen(new Simulation(sm));
+        graphManager = new GraphManager(graphWindow);
+        simManager = new SimManager(simWindow, graphManager);
+        }
+
+        if (buttons.get(2).isPressed()) {
+            simManager.togglePause();
         }
 
     }
 
     public void render() {
+
+        p.background(42);
 
         renderSimGraphics();
 
@@ -144,7 +152,7 @@ public class Simulation extends Screen {
 
         graphGraphics.beginDraw();
 
-        graphGraphics.background(42,128);
+        graphGraphics.background(42, 128);
 
         for (int i = 0; i < graphManager.getLines().size(); i++) {
 

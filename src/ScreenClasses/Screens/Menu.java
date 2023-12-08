@@ -21,8 +21,6 @@ public class Menu extends Screen {
         this.p = sm.getP();
         buttons = new ArrayList<Button>();
 
-        
-
         buttons.add(new Button(p.width / 2 - 100, p.height / 2 - 50, 200, 100, "Start"));
         buttons.add(new Button(p.width / 2 - 100, p.height / 2 + 50, 200, 100, "Settings"));
         buttons.add(new Button(p.width / 2 - 100, p.height / 2 + 175, 200, 100, "Exit"));
@@ -50,6 +48,8 @@ public class Menu extends Screen {
     }
 
     public void render() {
+
+        p.background(42);
 
         p.imageMode(PConstants.CENTER);
         p.image(logo, p.width / 2, p.height / 2 - 200);

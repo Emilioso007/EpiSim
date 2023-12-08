@@ -13,7 +13,7 @@ public class ScreenManager {
         this.p = p;
 
         currentScreen = new Menu(this);
-        
+
         MouseHandler.init(p);
     }
 
@@ -28,6 +28,8 @@ public class ScreenManager {
     }
 
     public void render() {
+        p.background(42);
+
         currentScreen.render();
 
         p.fill(255);
