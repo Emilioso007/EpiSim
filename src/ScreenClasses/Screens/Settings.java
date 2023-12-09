@@ -57,17 +57,6 @@ public class Settings extends Screen {
                         screenManager.changeScreen(new Menu(screenManager));
                         break;
 
-                    case "addAgentButton":
-                        SimConfig.setProperty("nAgents", String.valueOf(SimConfig.getNAgents() + increment));
-                        break;
-
-                    case "subtractAgentButton":
-                        SimConfig.setProperty("nAgents", String.valueOf(SimConfig.getNAgents() - increment));
-                        if (SimConfig.getNAgents() < 0) {
-                            SimConfig.setProperty("nAgents", "0");
-                        }
-                        break;
-
                     case "increment1":
                         increment = 1;
                         break;
@@ -82,6 +71,17 @@ public class Settings extends Screen {
 
                     case "increment100":
                         increment = 100;
+                        break;
+
+                    case "addAgentButton":
+                        SimConfig.setProperty("nAgents", String.valueOf(SimConfig.getNAgents() + increment));
+                        break;
+
+                    case "subtractAgentButton":
+                        SimConfig.setProperty("nAgents", String.valueOf(SimConfig.getNAgents() - increment));
+                        if (SimConfig.getNAgents() < 1) {
+                            SimConfig.setProperty("nAgents", "1");
+                        }
                         break;
 
                     case "addRadiusButton":

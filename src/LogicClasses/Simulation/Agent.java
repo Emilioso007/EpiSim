@@ -3,6 +3,8 @@ package LogicClasses.Simulation;
 import LogicClasses.UtilitiesClasses.AABB;
 import LogicClasses.UtilitiesClasses.Circle;
 import LogicClasses.UtilitiesClasses.Color;
+import LogicClasses.UtilitiesClasses.Random;
+import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Agent extends Circle {
@@ -16,6 +18,8 @@ public class Agent extends Circle {
 
     private Color color;
 
+    private PVector noiseVector;
+
     public Agent(AABB simWindow, int x, int y, int r) {
         super(x, y, r);
 
@@ -27,11 +31,16 @@ public class Agent extends Circle {
         vel = PVector.fromAngle(angle);
 
         color = new Color(0, 255, 0);
+
+        noiseVector = new PVector((float) Math.random() * 1000, (float) Math.random() * 1000);
     }
 
     public void randomWalk() {
-        angle += (Math.random() * 2 - 1) * 0.5;
-        vel = PVector.fromAngle(angle);
+
+        noiseVector.add(0.01f, 0.01f);
+
+        vel = new PVector(Random.perlinNoise1D(noiseVector.x) * 2 - 1, Random.perlinNoise1D(noiseVector.y) * 2 - 1);
+        vel.normalize();
         vel.mult(SimConfig.getAgentSpeed());
         move(vel);
 
