@@ -6,6 +6,7 @@ import LogicClasses.Simulation.SimManager;
 import LogicClasses.Simulation.Graph.GraphLine;
 import LogicClasses.Simulation.Graph.GraphManager;
 import LogicClasses.UtilitiesClasses.AABB;
+import LogicClasses.UtilitiesClasses.Color;
 import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
 import ScreenClasses.ScreenObjects.Button;
@@ -44,9 +45,9 @@ public class Simulation extends Screen {
 
         buttons = new ArrayList<Button>();
 
-        buttons.add(new Button(50, p.height / 2 + 250, 200, 100, "Menu"));
-        buttons.add(new Button(50, p.height / 2 + 150, 200, 100, "Reset"));
-        buttons.add(new Button(50, p.height / 2 + 50, 200, 100, "Pause"));
+        buttons.add(new Button(50, p.height / 2 + 250, 200, 100, "Menu", "menuButton"));
+        buttons.add(new Button(50, p.height / 2 + 150, 200, 100, "Reset", "resetButton"));
+        buttons.add(new Button(50, p.height / 2 + 50, 200, 100, "Pause", "pauseButton"));
 
     }
 
@@ -67,17 +68,28 @@ public class Simulation extends Screen {
             b.update();
         }
 
-        if (buttons.get(0).isPressed()) {
-            sm.changeScreen(new Menu(sm));
-        }
+        for (int i = 0; i < buttons.size(); i++) {
+            if (buttons.get(i).isPressed()) {
+                switch (buttons.get(i).getKey()) {
 
-        if (buttons.get(1).isPressed()) {
-        graphManager = new GraphManager(graphWindow);
-        simManager = new SimManager(simWindow, graphManager);
-        }
+                    case "menuButton":
+                        sm.changeScreen(new Menu(sm));
+                        break;
 
-        if (buttons.get(2).isPressed()) {
-            simManager.togglePause();
+                    case "resetButton":
+                        graphManager = new GraphManager(graphWindow);
+                        simManager = new SimManager(simWindow, graphManager);
+                        break;
+
+                    case "pauseButton":
+                        simManager.togglePause();
+                        break;
+
+                    default:
+                        break;
+                        
+                }
+            }
         }
 
     }
@@ -118,19 +130,9 @@ public class Simulation extends Screen {
         simGraphics.ellipseMode(PConstants.RADIUS);
         for (int i = 0; i < simManager.totalAgents(); i++) {
 
-            switch (simManager.getAgent(i).getState()) {
-                case 'S':
-                    simGraphics.fill(0, 255, 0);
-                    break;
-                case 'I':
-                    simGraphics.fill(255, 0, 0);
-                    break;
-                case 'R':
-                    simGraphics.fill(0, 0, 255);
-                    break;
-                default:
-                    break;
-            }
+            Color tempC = simManager.getAgent(i).getColor();
+
+            simGraphics.fill(tempC.getR(), tempC.getG(), tempC.getB());
 
             simGraphics.ellipse(simManager.getAgent(i).getX(), simManager.getAgent(i).getY(),
                     simManager.getAgent(i).getR(),

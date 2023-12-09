@@ -2,6 +2,7 @@ package LogicClasses.Simulation;
 
 import LogicClasses.UtilitiesClasses.AABB;
 import LogicClasses.UtilitiesClasses.Circle;
+import LogicClasses.UtilitiesClasses.Color;
 import processing.core.PVector;
 
 public class Agent extends Circle {
@@ -13,16 +14,19 @@ public class Agent extends Circle {
     private PVector vel;
     private float angle;
 
-    public Agent(AABB simWindow, int x, int y, int r, char state) {
+    private Color color;
+
+    public Agent(AABB simWindow, int x, int y, int r) {
         super(x, y, r);
 
         this.simWindow = simWindow;
 
-        this.state = state;
+        this.state = 'S';
 
         angle = (float) (Math.random() * Math.PI * 2);
         vel = PVector.fromAngle(angle);
 
+        color = new Color(0, 255, 0);
     }
 
     public void randomWalk() {
@@ -48,6 +52,19 @@ public class Agent extends Circle {
 
     public void setState(char state) {
         this.state = state;
+
+        switch (this.state) {
+            case 'S':
+                color = new Color(0, 255, 0);
+                break;
+            case 'I':
+                color = new Color(255, 0, 0);
+                break;
+            case 'R':
+                color = new Color(0, 0, 255);
+                break;
+        }
+
     }
 
     public void setInfected(int frameInfected) {
@@ -60,6 +77,10 @@ public class Agent extends Circle {
 
     public int getFrameInfected() {
         return frameInfected;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
 }

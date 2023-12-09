@@ -79,7 +79,7 @@ public class SimManager {
 
         for (int i = 0; i < agents.length; i++) {
             if (agents[i].getState() == 'I') {
-                if (frameCount - agents[i].getFrameInfected() > 300) {
+                if (frameCount - agents[i].getFrameInfected() > SimConfig.getRecoveryTime()) {
                     agents[i].setState('R');
                 }
             }

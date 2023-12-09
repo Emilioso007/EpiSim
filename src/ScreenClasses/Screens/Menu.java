@@ -2,6 +2,8 @@ package ScreenClasses.Screens;
 
 import java.util.ArrayList;
 
+import LogicClasses.Simulation.SimManager;
+import LogicClasses.Simulation.Graph.GraphManager;
 import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
 import processing.core.*;
@@ -21,9 +23,9 @@ public class Menu extends Screen {
         this.p = sm.getP();
         buttons = new ArrayList<Button>();
 
-        buttons.add(new Button(p.width / 2 - 100, p.height / 2 - 50, 200, 100, "Start"));
-        buttons.add(new Button(p.width / 2 - 100, p.height / 2 + 50, 200, 100, "Settings"));
-        buttons.add(new Button(p.width / 2 - 100, p.height / 2 + 175, 200, 100, "Exit"));
+        buttons.add(new Button(p.width / 2 - 100, p.height / 2 - 50, 200, 100, "Start", "startButton"));
+        buttons.add(new Button(p.width / 2 - 100, p.height / 2 + 50, 200, 100, "Settings", "settingsButton"));
+        buttons.add(new Button(p.width / 2 - 100, p.height / 2 + 175, 200, 100, "Exit", "exitButton"));
 
         logo = p.loadImage("Images\\Logo.png");
 
@@ -34,17 +36,29 @@ public class Menu extends Screen {
             b.update();
         }
 
-        if (buttons.get(0).isPressed()) {
-            sm.changeScreen(new Simulation(sm));
+        for (int i = 0; i < buttons.size(); i++) {
+            if (buttons.get(i).isPressed()) {
+                switch (buttons.get(i).getKey()) {
+                    
+                    case "startButton":
+                        sm.changeScreen(new Simulation(sm));
+                        break;
+
+                    case "settingsButton":
+                        sm.changeScreen(new Settings(sm));
+                        break;
+
+                    case "exitButton":
+                        p.exit();
+                        break;
+
+                    default:
+                        break;
+
+                }
+            }
         }
 
-        if (buttons.get(1).isPressed()) {
-            sm.changeScreen(new Settings(sm));
-        }
-
-        if (buttons.get(2).isPressed()) {
-            p.exit();
-        }
     }
 
     public void render() {

@@ -26,8 +26,8 @@ public class SimConfig {
         return Integer.parseInt(properties.getProperty("framesPerDay"));
     }
 
-    public static float getAgentSpeed() {
-        return Float.parseFloat(properties.getProperty("agentSpeed"));
+    public static int getAgentSpeed() {
+        return Integer.parseInt(properties.getProperty("agentSpeed"));
     }
 
     public static int getAgentRadius() {

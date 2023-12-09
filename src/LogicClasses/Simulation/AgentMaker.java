@@ -9,7 +9,7 @@ public class AgentMaker {
 
     public AgentMaker(AABB simWindow) {
 
-        this.simWindow = simWindow; 
+        this.simWindow = simWindow;
 
     }
 
@@ -18,7 +18,7 @@ public class AgentMaker {
         return new Agent(this.simWindow,
                 Random.Int(this.simWindow.getW()),
                 Random.Int(this.simWindow.getH()),
-                SimConfig.getAgentRadius(), 'S');
+                SimConfig.getAgentRadius());
 
     }
 
