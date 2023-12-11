@@ -2,26 +2,20 @@ package ScreenClasses.Screens;
 
 import java.util.ArrayList;
 
-import LogicClasses.Simulation.SimManager;
-import LogicClasses.Simulation.Graph.GraphLine;
-import LogicClasses.Simulation.Graph.GraphManager;
-import LogicClasses.UtilitiesClasses.AABB;
-import LogicClasses.UtilitiesClasses.Color;
-import ScreenClasses.Screen;
-import ScreenClasses.ScreenManager;
-import ScreenClasses.ScreenObjects.Button;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
+import LogicClasses.Simulation.SimManager;
+import LogicClasses.Simulation.Graph.GraphLine;
+import LogicClasses.UtilitiesClasses.AABB;
+import LogicClasses.UtilitiesClasses.Color;
+import ScreenClasses.ScreenManager;
+import ScreenClasses.ScreenObjects.Button;
+
 public class Simulation extends Screen {
 
-    private PApplet p;
-    private ScreenManager sm;
-
     private SimManager simManager;
-
-    private GraphManager graphManager;
 
     private AABB simWindow, graphWindow;
 
@@ -30,15 +24,12 @@ public class Simulation extends Screen {
     ArrayList<Button> buttons;
 
     public Simulation(ScreenManager sm) {
-
-        this.sm = sm;
-        this.p = this.sm.getP();
+        super(sm);
 
         this.simWindow = new AABB(640, 60, 600, 600);
         this.graphWindow = new AABB(60, 60, 520, 300);
 
-        graphManager = new GraphManager(graphWindow);
-        simManager = new SimManager(simWindow, graphManager);
+        simManager = new SimManager(simWindow);
 
         simGraphics = p.createGraphics((int) simWindow.getW(), (int) simWindow.getH(), PConstants.P2D);
         graphGraphics = p.createGraphics((int) graphWindow.getW(), (int) graphWindow.getH(), PConstants.P2D);
@@ -54,7 +45,6 @@ public class Simulation extends Screen {
     public void update() {
 
         simManager.run();
-        graphManager.run();
 
         if (p.mousePressed && this.graphWindow.contains(p.mouseX, p.mouseY)) {
             this.graphWindow.setX(this.graphWindow.getX() + p.mouseX - p.pmouseX);
@@ -77,8 +67,7 @@ public class Simulation extends Screen {
                         break;
 
                     case "resetButton":
-                        graphManager = new GraphManager(graphWindow);
-                        simManager = new SimManager(simWindow, graphManager);
+                        simManager = new SimManager(simWindow);
                         break;
 
                     case "pauseButton":
@@ -87,7 +76,7 @@ public class Simulation extends Screen {
 
                     default:
                         break;
-                        
+
                 }
             }
         }
@@ -156,9 +145,9 @@ public class Simulation extends Screen {
 
         graphGraphics.background(42, 128);
 
-        for (int i = 0; i < graphManager.getLines().size(); i++) {
+        for (int i = 0; i < simManager.graphManager.getLines().size(); i++) {
 
-            GraphLine line = graphManager.getLines().get(i);
+            GraphLine line = simManager.graphManager.getLines().get(i);
 
             graphGraphics.stroke(line.getColor().getR(), line.getColor().getG(), line.getColor().getB());
             graphGraphics.strokeWeight(5);

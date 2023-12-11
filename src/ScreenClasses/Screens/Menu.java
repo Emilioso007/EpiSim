@@ -2,25 +2,19 @@ package ScreenClasses.Screens;
 
 import java.util.ArrayList;
 
-import LogicClasses.Simulation.SimManager;
-import LogicClasses.Simulation.Graph.GraphManager;
-import ScreenClasses.Screen;
-import ScreenClasses.ScreenManager;
 import processing.core.*;
+
+import ScreenClasses.ScreenManager;
 import ScreenClasses.ScreenObjects.Button;;
 
 public class Menu extends Screen {
-
-    PApplet p;
-    ScreenManager sm;
 
     ArrayList<Button> buttons;
 
     PImage logo;
 
     public Menu(ScreenManager sm) {
-        this.sm = sm;
-        this.p = sm.getP();
+        super(sm);
         buttons = new ArrayList<Button>();
 
         buttons.add(new Button(p.width / 2 - 100, p.height / 2 - 50, 200, 100, "Start", "startButton"));

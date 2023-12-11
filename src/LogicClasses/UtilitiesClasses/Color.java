@@ -1,7 +1,7 @@
 package LogicClasses.UtilitiesClasses;
 
 public class Color {
-    
+
     private int r, g, b, a;
 
     public Color(int r, int g, int b) {
@@ -26,11 +26,11 @@ public class Color {
         return g;
     }
 
-    public int getB(){
+    public int getB() {
         return b;
     }
 
-    public int getA(){
+    public int getA() {
         return a;
     }
 

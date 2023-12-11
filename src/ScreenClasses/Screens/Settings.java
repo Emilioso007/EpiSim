@@ -2,28 +2,20 @@ package ScreenClasses.Screens;
 
 import java.util.ArrayList;
 
+import processing.core.PConstants;
+
 import LogicClasses.Simulation.SimConfig;
-import LogicClasses.Simulation.SimManager;
-import LogicClasses.Simulation.Graph.GraphManager;
-import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
 import ScreenClasses.ScreenObjects.Button;
-import processing.core.PApplet;
-import processing.core.PConstants;
 
 public class Settings extends Screen {
 
     ArrayList<Button> buttons;
 
-    ScreenManager screenManager;
-
-    PApplet p;
-
     private int increment = 1;
 
-    public Settings(ScreenManager screenManager) {
-        this.screenManager = screenManager;
-        this.p = this.screenManager.getP();
+    public Settings(ScreenManager sm) {
+        super(sm);
         buttons = new ArrayList<Button>();
 
         buttons.add(new Button(p.width - 200, p.height / 2 + 30, 100, 60, "back", "backButton"));
@@ -54,7 +46,7 @@ public class Settings extends Screen {
                 switch (buttons.get(i).getKey()) {
 
                     case "backButton":
-                        screenManager.changeScreen(new Menu(screenManager));
+                        sm.changeScreen(new Menu(sm));
                         break;
 
                     case "increment1":
@@ -131,7 +123,7 @@ public class Settings extends Screen {
         p.background(42);
 
         for (Button b : buttons) {
-            b.render(this.screenManager.getP());
+            b.render(p);
         }
 
         p.fill(255);

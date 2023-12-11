@@ -17,13 +17,13 @@ public class SimManager {
 
     private boolean paused = false;
 
-    public SimManager(AABB simWindow, GraphManager graphManager) {
+    public SimManager(AABB simWindow) {
 
         agents = new Agent[SimConfig.getNAgents()];
 
         this.simWindow = simWindow;
 
-        this.graphManager = graphManager;
+        this.graphManager = new GraphManager();
 
         agentMaker = new AgentMaker(this.simWindow);
 

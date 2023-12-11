@@ -6,21 +6,13 @@ import LogicClasses.UtilitiesClasses.*;
 
 public class GraphManager {
 
-    private AABB graphWindow;
-
     private ArrayList<GraphLine> lines = new ArrayList<GraphLine>();
 
-    public GraphManager(AABB graphWindow) {
-
-        this.graphWindow = graphWindow;
+    public GraphManager() {
 
         lines.add(new GraphLine(new Color(0, 255, 0)));
         lines.add(new GraphLine(new Color(255, 0, 0)));
         lines.add(new GraphLine(new Color(0, 0, 255)));
-
-    }
-
-    public void run() {
 
     }
 

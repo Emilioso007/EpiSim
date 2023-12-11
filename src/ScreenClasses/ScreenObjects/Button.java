@@ -1,9 +1,9 @@
 package ScreenClasses.ScreenObjects;
 
+import processing.core.*;
+
 import LogicClasses.UtilitiesClasses.AABB;
 import LogicClasses.UtilitiesClasses.MouseHandler;
-import processing.core.PApplet;
-import processing.core.PConstants;
 
 public class Button extends AABB {
 

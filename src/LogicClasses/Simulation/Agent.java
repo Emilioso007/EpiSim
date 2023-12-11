@@ -4,7 +4,6 @@ import LogicClasses.UtilitiesClasses.AABB;
 import LogicClasses.UtilitiesClasses.Circle;
 import LogicClasses.UtilitiesClasses.Color;
 import LogicClasses.UtilitiesClasses.Random;
-import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Agent extends Circle {
