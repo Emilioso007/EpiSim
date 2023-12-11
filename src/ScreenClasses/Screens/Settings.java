@@ -14,7 +14,7 @@ import ScreenClasses.ScreenObjects.Button;
 
 public class Settings extends Screen {
 
-    ArrayList<Button> buttons;
+    private ArrayList<Button> buttons;
 
     private int increment = 1;
 

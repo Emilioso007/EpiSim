@@ -13,9 +13,9 @@ import ScreenClasses.ScreenObjects.Button;;
 
 public class Menu extends Screen {
 
-    ArrayList<Button> buttons;
+    private ArrayList<Button> buttons;
 
-    PImage logo;
+    private PImage logo;
 
     public Menu(ScreenManager sm) {
         super(sm);
@@ -37,7 +37,7 @@ public class Menu extends Screen {
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).isPressed()) {
                 switch (buttons.get(i).getKey()) {
-                    
+
                     case "startButton":
                         sm.changeScreen(new Simulation(sm));
                         break;

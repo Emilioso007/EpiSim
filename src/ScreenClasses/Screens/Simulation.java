@@ -26,7 +26,7 @@ public class Simulation extends Screen {
 
     private PGraphics simGraphics, graphGraphics;
 
-    ArrayList<Button> buttons;
+    private ArrayList<Button> buttons;
 
     public Simulation(ScreenManager sm) {
         super(sm);

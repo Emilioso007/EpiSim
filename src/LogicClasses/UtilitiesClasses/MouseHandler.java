@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 public class MouseHandler {
 
-    static PApplet p;
+    private static PApplet p;
 
     public static boolean leftPressed, rightPressed;
     public static int mouseX, mouseY;
