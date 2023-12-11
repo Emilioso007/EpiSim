@@ -1,3 +1,8 @@
+/*
+ * My own Color class, as the Processing primitive color
+ *  is not available outside the processing environment.
+ */
+
 package LogicClasses.UtilitiesClasses;
 
 public class Color {

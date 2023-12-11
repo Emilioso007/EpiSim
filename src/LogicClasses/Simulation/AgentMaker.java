@@ -1,3 +1,8 @@
+/*
+ * A agent factory.
+ * Returns a new agent with random position and set radius.
+ */
+
 package LogicClasses.Simulation;
 
 import LogicClasses.UtilitiesClasses.AABB;

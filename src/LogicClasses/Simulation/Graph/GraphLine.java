@@ -1,3 +1,8 @@
+/*
+ * A graphline is a line in the graph. 
+ * It has a color and an arraylist of integers, which can manipulated and accessed in many ways. 
+ */
+
 package LogicClasses.Simulation.Graph;
 
 import java.util.ArrayList;
@@ -18,6 +23,10 @@ public class GraphLine {
         return data.get(index);
     }
 
+    public ArrayList<Integer> getData() {
+        return data;
+    }
+
     public void setData(ArrayList<Integer> data) {
         this.data = data;
     }
@@ -32,6 +41,10 @@ public class GraphLine {
 
     public Color getColor() {
         return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }

@@ -1,3 +1,9 @@
+/*
+ * A helper class which represents a circle.
+ * It has a position, radius and a few methods to manipulate it.
+ * It is used in the agent class.
+ */
+
 package LogicClasses.UtilitiesClasses;
 
 import processing.core.PVector;

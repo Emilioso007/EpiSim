@@ -1,3 +1,7 @@
+/*
+ * The dummy screen that every screen extends.
+ */
+
 package ScreenClasses.Screens;
 
 import processing.core.PApplet;

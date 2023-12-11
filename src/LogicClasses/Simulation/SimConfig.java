@@ -1,3 +1,7 @@
+/*
+ * Accesses the simconfig.properties file and returns the values of the properties when needed.
+ */
+
 package LogicClasses.Simulation;
 
 import java.io.FileInputStream;

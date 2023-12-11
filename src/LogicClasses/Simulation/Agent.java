@@ -1,3 +1,10 @@
+/*
+ * The Agent is each individual in the simulation.
+ * It also has movement methods, and methods to set and get its current state.
+ * It extends Circle which includes the collision detection methods.
+ * It also keeps track of the frame it was infected, and its color.
+ */
+
 package LogicClasses.Simulation;
 
 import LogicClasses.UtilitiesClasses.AABB;

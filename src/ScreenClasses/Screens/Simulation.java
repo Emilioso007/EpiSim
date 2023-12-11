@@ -1,3 +1,8 @@
+/*
+ * The simulation screen, aka. the heart of the program.
+ * It is responsible for rendering the simulation, as well as the graph.
+ */
+
 package ScreenClasses.Screens;
 
 import java.util.ArrayList;

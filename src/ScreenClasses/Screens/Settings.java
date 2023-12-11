@@ -1,3 +1,7 @@
+/*
+ * The settings screen. It has buttons to change the simulation variables.
+ */
+
 package ScreenClasses.Screens;
 
 import java.util.ArrayList;

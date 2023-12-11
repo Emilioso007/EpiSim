@@ -1,3 +1,7 @@
+/*
+ * The screen manager keeps track of the current screen, and runs it.
+ */
+
 package ScreenClasses;
 
 import processing.core.PApplet;
@@ -16,7 +20,6 @@ public class ScreenManager {
 
         currentScreen = new Menu(this);
 
-        MouseHandler.init(p);
     }
 
     public void run() {

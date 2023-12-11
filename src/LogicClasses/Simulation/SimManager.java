@@ -1,3 +1,8 @@
+/*
+ * The simulation manager is the class that controls the simulation.
+ * It keeps track of the agents, and the graph manager, and exchanges data between them.
+ */
+
 package LogicClasses.Simulation;
 
 import LogicClasses.Simulation.Graph.GraphManager;

@@ -1,3 +1,7 @@
+/*
+ * The menu screen. It has buttons to start the simulation, go to settings, and exit the program.
+ */
+
 package ScreenClasses.Screens;
 
 import java.util.ArrayList;

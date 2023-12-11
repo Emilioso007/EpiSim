@@ -1,3 +1,7 @@
+/*
+ * A button that when pressed only stays on for one frame.
+ */
+
 package ScreenClasses.ScreenObjects;
 
 import processing.core.*;

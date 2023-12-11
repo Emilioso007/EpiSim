@@ -1,3 +1,8 @@
+/*
+ * A "AABB" is a axis-aligned bounding box, also known as a rectangle.
+ * It is a useful class many other classes to extend, due to its containment method.
+ */
+
 package LogicClasses.UtilitiesClasses;
 
 public class AABB {

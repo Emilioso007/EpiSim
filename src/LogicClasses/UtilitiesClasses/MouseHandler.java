@@ -1,3 +1,7 @@
+/*
+ * A helper class that keeps track of the mouse position and buttons.
+ */
+
 package LogicClasses.UtilitiesClasses;
 
 import processing.core.PApplet;

@@ -1,3 +1,7 @@
+/*
+ * GraphManager keeps track of all the GraphLines.
+ */
+
 package LogicClasses.Simulation.Graph;
 
 import java.util.ArrayList;
