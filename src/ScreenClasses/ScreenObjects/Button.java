@@ -28,10 +28,6 @@ public class Button extends AABB {
 
         pressed = (pressedA && pressedB);
 
-        if(pressed){
-            System.out.println(key);
-        }
-
     }
 
     public void render(PApplet p) {
