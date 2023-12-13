@@ -10,19 +10,23 @@ import LogicClasses.UtilitiesClasses.Random;
 
 public class AgentMaker {
 
-    private AABB simWindow;
+    private static AgentMaker instance;
 
-    public AgentMaker(AABB simWindow) {
-
-        this.simWindow = simWindow;
-
+    private AgentMaker() {
     }
 
-    public Agent makeAgent() {
+    public static AgentMaker getInstance() {
+        if (instance == null) {
+            instance = new AgentMaker();
+        }
+        return instance;
+    }
 
-        return new Agent(this.simWindow,
-                Random.Int(this.simWindow.getW()),
-                Random.Int(this.simWindow.getH()),
+    public Agent makeAgent(AABB simWindow) {
+
+        return new Agent(simWindow,
+                Random.Int(simWindow.getW()),
+                Random.Int(simWindow.getH()),
                 SimConfig.getAgentRadius());
 
     }

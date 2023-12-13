@@ -2,7 +2,7 @@
  *
  * EpiSim - A disease simulator
  * By Emil Jørgensen, 2023
- *  
+ * 
  */
 
 /*

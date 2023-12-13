@@ -18,8 +18,6 @@ public class SimManager {
 
     public GraphManager graphManager;
 
-    private AgentMaker agentMaker;
-
     private boolean paused = false;
 
     public SimManager(AABB simWindow) {
@@ -30,10 +28,8 @@ public class SimManager {
 
         this.graphManager = new GraphManager();
 
-        agentMaker = new AgentMaker(this.simWindow);
-
         for (int i = 0; i < SimConfig.getNAgents(); i++) {
-            agents[i] = agentMaker.makeAgent();
+            agents[i] = AgentMaker.getInstance().makeAgent(this.simWindow);
         }
 
         agents[0].setState('I');
