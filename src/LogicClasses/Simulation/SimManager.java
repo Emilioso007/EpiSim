@@ -5,6 +5,8 @@
 
 package LogicClasses.Simulation;
 
+import LogicClasses.Simulation.AgentFactory.AgentFactory;
+import LogicClasses.Simulation.AgentFactory.RandomAgentFactory;
 import LogicClasses.Simulation.Graph.GraphManager;
 import LogicClasses.UtilitiesClasses.AABB;
 
@@ -28,8 +30,10 @@ public class SimManager {
 
         this.graphManager = new GraphManager();
 
+        AgentFactory agentFactory = new RandomAgentFactory();
+
         for (int i = 0; i < SimConfig.getNAgents(); i++) {
-            agents[i] = AgentMaker.getInstance().makeAgent(this.simWindow);
+            agents[i] = agentFactory.createAgent(this.simWindow);
         }
 
         agents[0].setState('I');

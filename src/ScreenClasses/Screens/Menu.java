@@ -29,6 +29,7 @@ public class Menu extends Screen {
 
     }
 
+    @Override
     public void update() {
         for (Button b : buttons) {
             b.update();
@@ -59,6 +60,7 @@ public class Menu extends Screen {
 
     }
 
+    @Override
     public void render() {
 
         p.background(42);

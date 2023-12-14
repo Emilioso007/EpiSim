@@ -47,6 +47,7 @@ public class Simulation extends Screen {
 
     }
 
+    @Override
     public void update() {
 
         simManager.run();
@@ -88,6 +89,7 @@ public class Simulation extends Screen {
 
     }
 
+    @Override
     public void render() {
 
         p.background(42);

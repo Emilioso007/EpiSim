@@ -40,6 +40,7 @@ public class Settings extends Screen {
 
     }
 
+    @Override
     public void update() {
         for (Button b : buttons) {
             b.update();
@@ -122,6 +123,7 @@ public class Settings extends Screen {
 
     }
 
+    @Override
     public void render() {
 
         p.background(42);
