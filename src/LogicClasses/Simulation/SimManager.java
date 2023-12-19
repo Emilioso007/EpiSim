@@ -1,6 +1,6 @@
 /*
  * The simulation manager is the class that controls the simulation.
- * It keeps track of the agents, and the graph manager, and exchanges data between them.
+ * It keeps track of the agents and the graph manager, and exchanges data between them.
  */
 
 package LogicClasses.Simulation;
@@ -45,8 +45,8 @@ public class SimManager {
         if (paused) {
             return;
         }
-        for (int i = 0; i < agents.length; i++) {
-            agents[i].randomWalk();
+        for (Agent a : agents) {
+            a.randomWalk();
         }
 
         if (frameCount % SimConfig.getFramesPerDay() == 0) {

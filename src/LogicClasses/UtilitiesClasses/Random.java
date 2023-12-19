@@ -14,7 +14,7 @@ public class Random extends PApplet {
     private Random() {
     }
 
-    public static int Int(int max) {
+    public static int randomInt(int max) {
         return (int) (Math.random() * max);
     }
 

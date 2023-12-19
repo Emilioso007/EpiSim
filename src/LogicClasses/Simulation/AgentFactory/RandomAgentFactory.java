@@ -13,8 +13,8 @@ public class RandomAgentFactory implements AgentFactory{
     @Override
     public Agent createAgent(AABB simWindow) {
         return new Agent(simWindow,
-                Random.Int(simWindow.getW()),
-                Random.Int(simWindow.getH()),
+                Random.randomInt(simWindow.getW()),
+                Random.randomInt(simWindow.getH()),
                 SimConfig.getAgentRadius());
     }
     
